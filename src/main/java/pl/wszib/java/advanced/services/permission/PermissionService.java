@@ -1,4 +1,4 @@
-package pl.wszib.java.advanced.services;
+package pl.wszib.java.advanced.services.permission;
 
 import java.util.Set;
 
