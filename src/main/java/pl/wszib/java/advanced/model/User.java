@@ -15,6 +15,7 @@ public class User {
   public User(String username, String password) {
     this.password = password;
     this.username = username;
+    this.role = Role.USER;
   }
 
   public boolean isAdmin() {
