@@ -3,13 +3,13 @@ package pl.wszib.java.advanced.database;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import lombok.Getter;
 import pl.wszib.java.advanced.exceptions.CanNotBorrowBookException;
 import pl.wszib.java.advanced.model.Book;
 
-@Component
+@Repository
 @Getter
 public class BookRepository implements IBookRepository {
   private final List<Book> books = new ArrayList<>();
