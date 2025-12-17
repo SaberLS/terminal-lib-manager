@@ -15,19 +15,31 @@ import pl.wszib.java.advanced.model.Role;
 import pl.wszib.java.advanced.model.User;
 import pl.wszib.java.advanced.model.operation.Operation;
 import pl.wszib.java.advanced.services.permission.IPermissionService;
+import pl.wszib.java.advanced.services.user.IUserService;
 
 @Component
 @RequiredArgsConstructor
 public class Core implements ICore {
   private final IPermissionService permissionService;
   private final IBookRepository bookRepository;
+  private final IUserService userService;
   private final IGUI gui;
 
   @Override
   public void run() {
-    User user = new User("user", "user", Role.ADMIN);
+    this.userService.register("user", "123", Role.USER);
+    this.userService.register("admin", "456", Role.ADMIN);
 
-    Set<Operation> permissions = permissionService.getPermissions(user);
+    Optional<User> userOpt = userService.login(
+        gui.readLogin(),
+        gui.readPassword());
+
+    if (userOpt.isEmpty()) {
+      gui.showLoginFailedMessage();
+      return;
+    }
+
+    Set<Operation> permissions = permissionService.getPermissions(userOpt.get());
 
     Menu menu = new Menu(permissions);
 
