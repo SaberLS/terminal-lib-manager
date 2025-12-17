@@ -15,13 +15,17 @@ public class BookRepository implements IBookRepository {
   private final List<Book> books = new ArrayList<>();
 
   @Override
-  public void borrowBook(String isbn) {
+  public boolean borrowBook(String isbn) {
     for (Book book : this.getBooks())
-      if (book.getIsbn().equals(isbn) && !book.isAvailable()) {
+      if (book.getIsbn().equals(isbn)) {
+        if (!book.isAvailable()) {
         book.setAvailable(false);
-        return;
+          return true;
+        }
+        return false;
       }
 
-    throw new CanNotBorrowBookException();
+    return false;
+  }
   }
 }
