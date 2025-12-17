@@ -15,11 +15,13 @@ public class RolePermissions {
     PERMISSIONS.put(Role.USER, EnumSet.of(
         Operation.LIST_BOOKS,
         Operation.BORROW_BOOK,
+        Operation.FIND_BOOK,
         Operation.EXIT));
 
     PERMISSIONS.put(Role.ADMIN, EnumSet.of(
         Operation.LIST_BOOKS,
         Operation.BORROW_BOOK,
+        Operation.FIND_BOOK,
         Operation.ADD_BOOK,
         Operation.REMOVE_BOOK,
         Operation.EXIT));
