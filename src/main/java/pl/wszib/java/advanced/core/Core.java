@@ -29,6 +29,11 @@ public class Core implements ICore {
   public void run() {
     this.userService.register("user", "123", Role.USER);
     this.userService.register("admin", "456", Role.ADMIN);
+    this.bookRepository.addBook(new Book("12345", "Møøse Effects", "Olaf Prot", true));
+    this.bookRepository
+        .addBook(new Book("67890", "The Høt Hands of an Oslo Dentist", "Bjørn Irkestøm-Slater Walker", false));
+    this.bookRepository.addBook(
+        new Book("54321", "Llamas are dangerous", "14 North Chilean Guanacos", true));
 
     Optional<User> userOpt = userService.login(
         gui.readLogin(),
