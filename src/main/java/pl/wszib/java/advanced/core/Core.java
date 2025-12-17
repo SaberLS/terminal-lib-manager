@@ -8,21 +8,20 @@ import lombok.RequiredArgsConstructor;
 import pl.wszib.java.advanced.database.IBookRepository;
 import pl.wszib.java.advanced.gui.IGUI;
 import pl.wszib.java.advanced.gui.Menu;
-import pl.wszib.java.advanced.model.Role;
 import pl.wszib.java.advanced.model.User;
 import pl.wszib.java.advanced.model.operation.Operation;
-import pl.wszib.java.advanced.services.PermissionService;
+import pl.wszib.java.advanced.services.permission.IPermissionService;
 
 @Component
 @RequiredArgsConstructor
 public class Core implements ICore {
-  private final PermissionService permissionService;
+  private final IPermissionService permissionService;
   private final IBookRepository bookRepository;
   private final IGUI gui;
 
   @Override
   public void run() {
-    User user = new User("user", "user", Role.ADMIN);
+    User user = new User("user", "user");
 
     Set<Operation> permissions = permissionService.getPermissions(user);
 
@@ -31,7 +30,25 @@ public class Core implements ICore {
     while (true) {
       Operation chosenOperation = gui.showMenuAndReadChoice(menu);
 
-      System.out.println(chosenOperation);
+      switch (chosenOperation) {
+        case LIST_BOOKS -> gui.listBooks(bookRepository.getBooks());
+        case BORROW_BOOK -> {
+          String isbn = gui.readISBN();
+          gui.showBorrowResultMessage(bookRepository.borrowBook(isbn));
+        }
+        case ADD_BOOK -> {
+          gui.showResultAddBookMessage(bookRepository.addBook(gui.readBook()));
+        }
+        case REMOVE_BOOK -> {
+          gui.showResultRemoveBookMessage(bookRepository.removeBook(gui.readISBN()).isPresent());
+        }
+        case EXIT -> {
+          gui.showExitMessage();
+          return;
+        }
+
+        default -> gui.showWrongOptionMessage();
+      }
     }
   }
 }
