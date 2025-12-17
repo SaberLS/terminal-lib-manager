@@ -35,6 +35,12 @@ public class GUI implements IGUI {
   }
 
   @Override
+  public String readAuthor() {
+    System.out.println("Author: ");
+    return this.scanner.nextLine();
+  }
+
+  @Override
   public void listBooks(List<Book> books) {
     for (Book book : books)
       System.out.println(book);
@@ -95,5 +101,17 @@ public class GUI implements IGUI {
   @Override
   public void showExitMessage() {
     System.out.println("Goodbye!");
+  }
+
+  @Override
+  public void showBook(Book book) {
+    System.out
+        .println("Title: " + book.getTitle() + "\nAuthor: " + book.getAuthor() + "\nAvailable: " + book.isAvailable()
+            + "\nISBN: " + book.getIsbn());
+  }
+
+  @Override
+  public void showBookNotFoundMessage() {
+    System.out.println("Book not found");
   }
 }

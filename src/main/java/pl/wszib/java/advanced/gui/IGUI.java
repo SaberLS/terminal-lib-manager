@@ -11,6 +11,8 @@ public interface IGUI {
 
   String readISBN();
 
+  String readAuthor();
+
   void listBooks(List<Book> books);
 
   void showBorrowResultMessage(boolean success);
@@ -26,4 +28,8 @@ public interface IGUI {
   void showResultRemoveBookMessage(boolean success);
 
   void showExitMessage();
+
+  void showBook(Book book);
+
+  void showBookNotFoundMessage();
 }
