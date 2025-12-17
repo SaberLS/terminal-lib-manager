@@ -17,4 +17,7 @@ public interface IBookRepository {
   Optional<Book> findBookByISBN(String isbn);
 
   List<Book> findBookByAuthor(String author);
+
+  Optional<Book> updateBook(String isbn, String newTitle, String newAuthor, boolean available);
+
 }

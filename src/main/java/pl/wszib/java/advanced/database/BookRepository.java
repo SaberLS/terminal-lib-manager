@@ -59,5 +59,17 @@ public class BookRepository implements IBookRepository {
 
     return list;
   }
+
+  @Override
+  public Optional<Book> updateBook(String isbn, String newTitle, String newAuthor, boolean available) {
+    Optional<Book> bookOpt = findBookByISBN(isbn);
+
+    bookOpt.ifPresent(book -> {
+      book.setTitle(newTitle);
+      book.setAuthor(newAuthor);
+      book.setAvailable(available);
+    });
+
+    return bookOpt;
   }
 }
