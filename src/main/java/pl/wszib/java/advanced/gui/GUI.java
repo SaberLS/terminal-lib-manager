@@ -58,16 +58,6 @@ public class GUI implements IGUI {
   }
 
   @Override
-  public User readLoginAndPassword() {
-    System.out.println("Login: ");
-    String login = this.scanner.nextLine();
-
-    System.out.println("Password: ");
-
-    return new User(login, this.scanner.nextLine());
-  }
-
-  @Override
   public Book readBook() {
     System.out.println("ISBN: ");
     String isbn = this.scanner.nextLine();
@@ -113,5 +103,22 @@ public class GUI implements IGUI {
   @Override
   public void showBookNotFoundMessage() {
     System.out.println("Book not found");
+  }
+
+  @Override
+  public String readLogin() {
+    System.out.println("Login: ");
+    return this.scanner.nextLine();
+  }
+
+  @Override
+  public String readPassword() {
+    System.out.println("Password: ");
+    return this.scanner.nextLine();
+  }
+
+  @Override
+  public void showLoginFailedMessage() {
+    System.out.println("Login Failed");
   }
 }
