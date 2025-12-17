@@ -13,4 +13,8 @@ public interface IBookRepository {
   Optional<Book> removeBook(String isbn);
 
   public List<Book> getBooks();
+
+  Optional<Book> findBookByISBN(String isbn);
+
+  Optional<Book> findBookByAuthor(String author);
 }

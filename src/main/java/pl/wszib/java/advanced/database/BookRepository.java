@@ -16,14 +16,12 @@ public class BookRepository implements IBookRepository {
 
   @Override
   public boolean borrowBook(String isbn) {
-    for (Book book : this.getBooks())
-      if (book.getIsbn().equals(isbn)) {
-        if (!book.isAvailable()) {
-          book.setAvailable(false);
-          return true;
-        }
-        return false;
-      }
+    Optional<Book> book = this.findBookByISBN(isbn);
+
+    if (book.isPresent() && book.get().isAvailable()) {
+      book.get().setAvailable(false);
+      return true;
+    }
 
     return false;
   }
@@ -38,6 +36,24 @@ public class BookRepository implements IBookRepository {
     for (int i = 0; i < this.books.size(); i++)
       if (this.books.get(i).getIsbn().equals(isbn))
         return Optional.of(this.books.remove(i));
+
+    return Optional.empty();
+  }
+
+  @Override
+  public Optional<Book> findBookByISBN(String isbn) {
+    for (Book book : this.getBooks())
+      if (book.getIsbn().equals(isbn))
+        return Optional.of(book);
+
+    return Optional.empty();
+  }
+
+  @Override
+  public Optional<Book> findBookByAuthor(String author) {
+    for (Book book : this.getBooks())
+      if (book.getAuthor().equals(author))
+        return Optional.of(book);
 
     return Optional.empty();
   }
