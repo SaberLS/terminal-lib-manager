@@ -1,6 +1,7 @@
 package pl.wszib.java.advanced.core;
 
 import java.util.EnumSet;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -61,19 +62,22 @@ public class Core implements ICore {
           Set<Operation> operations = EnumSet.of(Operation.FIND_BY_AUTHOR, Operation.FIND_BY_ISBN);
 
           Menu findMenu = new Menu(operations);
-          Optional<Book> book = Optional.empty();
           switch (gui.showMenuAndReadChoice(findMenu)) {
             case FIND_BY_AUTHOR -> {
-              book = bookRepository.findBookByAuthor(gui.readAuthor());
+              List<Book> bookList = bookRepository.findBookByAuthor(gui.readAuthor());
+
+              if (bookList.isEmpty())
+                gui.showBookNotFoundMessage();
+              else
+                gui.listBooks(bookList);
             }
             case FIND_BY_ISBN -> {
-              book = bookRepository.findBookByISBN(gui.readISBN());
+              Optional<Book> book = bookRepository.findBookByISBN(gui.readISBN());
+
+              book.ifPresentOrElse(gui::showBook, gui::showBookNotFoundMessage);
             }
             default -> gui.showWrongOptionMessage();
           }
-
-          book.ifPresentOrElse(gui::showBook, gui::showBookNotFoundMessage);
-
         }
         case ADD_BOOK -> {
           gui.showResultAddBookMessage(bookRepository.addBook(gui.readBook()));
