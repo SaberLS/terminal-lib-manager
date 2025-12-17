@@ -50,11 +50,14 @@ public class BookRepository implements IBookRepository {
   }
 
   @Override
-  public Optional<Book> findBookByAuthor(String author) {
+  public List<Book> findBookByAuthor(String author) {
+    List<Book> list = new ArrayList<>();
+
     for (Book book : this.getBooks())
       if (book.getAuthor().equals(author))
-        return Optional.of(book);
+        list.add(book);
 
-    return Optional.empty();
+    return list;
+  }
   }
 }
