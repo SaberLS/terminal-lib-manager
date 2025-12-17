@@ -8,7 +8,6 @@ import org.springframework.stereotype.Component;
 
 import lombok.RequiredArgsConstructor;
 import pl.wszib.java.advanced.model.Book;
-import pl.wszib.java.advanced.model.User;
 import pl.wszib.java.advanced.model.operation.Operation;
 
 @Component
@@ -42,8 +41,11 @@ public class GUI implements IGUI {
 
   @Override
   public void listBooks(List<Book> books) {
-    for (Book book : books)
-      System.out.println(book);
+    System.out.println("--------");
+    for (Book book : books) {
+      this.showBook(book);
+      System.out.println("--------");
+    }
   }
 
   @Override
