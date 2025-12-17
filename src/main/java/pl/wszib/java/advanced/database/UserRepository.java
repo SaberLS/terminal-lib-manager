@@ -22,4 +22,9 @@ public class UserRepository implements IUserRepository {
 
     return Optional.empty();
   }
+
+  @Override
+  public boolean addUser(User user) {
+    return this.users.add(user);
+  }
 }

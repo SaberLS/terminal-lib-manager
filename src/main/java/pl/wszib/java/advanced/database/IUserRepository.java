@@ -9,4 +9,6 @@ public interface IUserRepository {
   Optional<User> findByUserName(String userName);
 
   List<User> getUsers();
+
+  boolean addUser(User user);
 }
