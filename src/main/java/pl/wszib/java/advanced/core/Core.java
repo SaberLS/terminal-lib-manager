@@ -82,6 +82,18 @@ public class Core implements ICore {
         case ADD_BOOK -> {
           gui.showResultAddBookMessage(bookRepository.addBook(gui.readBook()));
         }
+        case EDIT_BOOK -> {
+          String isbn = gui.readISBN();
+
+          bookRepository.findBookByISBN(isbn)
+              .ifPresentOrElse(book -> {
+                gui.showBook(book);
+
+                bookRepository.updateBook(isbn, gui.readTitle(), gui.readAuthor(), gui.readAvailability());
+
+                gui.showEditBookResult(true);
+              }, () -> gui.showEditBookResult(false));
+        }
         case REMOVE_BOOK -> {
           gui.showResultRemoveBookMessage(bookRepository.removeBook(gui.readISBN()).isPresent());
         }
