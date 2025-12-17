@@ -23,6 +23,7 @@ public class RolePermissions {
         Operation.BORROW_BOOK,
         Operation.FIND_BOOK,
         Operation.ADD_BOOK,
+        Operation.EDIT_BOOK,
         Operation.REMOVE_BOOK,
         Operation.EXIT));
   }
