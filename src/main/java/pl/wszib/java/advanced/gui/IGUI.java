@@ -35,4 +35,8 @@ public interface IGUI {
   String readPassword();
 
   void showLoginFailedMessage();
+
+  String readTitle();
+
+  boolean readAvailability();
 }

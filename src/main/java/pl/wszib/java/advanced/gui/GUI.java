@@ -59,21 +59,11 @@ public class GUI implements IGUI {
 
   @Override
   public Book readBook() {
-    System.out.println("ISBN: ");
-    String isbn = this.scanner.nextLine();
-
-    System.out.println("Title: ");
-    String title = this.scanner.nextLine();
-
-    System.out.println("Author: ");
-    String author = this.scanner.nextLine();
-
-    System.out.println("Available: ");
-    System.out.println("1. Yes");
-    System.out.println("2. No");
-    Boolean available = this.scanner.nextInt() == 1;
-
-    return new Book(title, author, isbn, available);
+    return new Book(
+        this.readISBN(),
+        this.readTitle(),
+        this.readAuthor(),
+        this.readAvailability());
   }
 
   @Override
@@ -120,5 +110,18 @@ public class GUI implements IGUI {
   @Override
   public void showLoginFailedMessage() {
     System.out.println("Login Failed");
+  }
+
+  @Override
+  public String readTitle() {
+    System.out.println("Title: ");
+    return this.scanner.nextLine();
+  }
+
+  @Override
+  public boolean readAvailability() {
+    System.out.println("Available:\n1. Yes\n2. No");
+
+    return this.scanner.nextInt() == 1;
   }
 }
