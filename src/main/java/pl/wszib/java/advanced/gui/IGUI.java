@@ -39,4 +39,6 @@ public interface IGUI {
   String readTitle();
 
   boolean readAvailability();
+
+  void showEditBookResult(boolean success);
 }

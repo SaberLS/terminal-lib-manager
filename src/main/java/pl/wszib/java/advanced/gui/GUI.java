@@ -124,4 +124,11 @@ public class GUI implements IGUI {
 
     return this.scanner.nextInt() == 1;
   }
+
+  @Override
+  public void showEditBookResult(boolean success) {
+    System.out.println(
+        success ? "Book edited successfully." : "Cannot edit the book.");
+  }
+
 }
