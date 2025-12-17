@@ -29,4 +29,17 @@
           <version>6.5.3</version>
         </dependency>
     </dependencies>
+
+  <build>
+    <plugins>
+        <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>exec-maven-plugin</artifactId>
+            <version>3.6.2</version>
+            <configuration>
+                <mainClass>pl.wszib.java.advanced.App</mainClass>
+            </configuration>
+        </plugin>
+    </plugins>
+  </build>
 </project>
