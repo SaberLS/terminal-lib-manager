@@ -10,8 +10,8 @@ import lombok.ToString;
 @Setter
 @ToString
 public class Book {
-  private final String title;
-  private final String author;
   private final String isbn;
+  private String title;
+  private String author;
   private boolean available;
 }
