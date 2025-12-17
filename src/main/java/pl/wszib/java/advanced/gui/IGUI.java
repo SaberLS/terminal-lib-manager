@@ -11,11 +11,19 @@ public interface IGUI {
 
   String readISBN();
 
-  void listBooks(List<Book> cars);
+  void listBooks(List<Book> books);
 
-  void showBorrowSuccessMessage(boolean success);
+  void showBorrowResultMessage(boolean success);
 
   void showWrongOptionMessage();
 
   User readLoginAndPassword();
+
+  Book readBook();
+
+  void showResultAddBookMessage(boolean success);
+
+  void showResultRemoveBookMessage(boolean success);
+
+  void showExitMessage();
 }

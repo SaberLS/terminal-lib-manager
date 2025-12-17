@@ -41,7 +41,7 @@ public class GUI implements IGUI {
   }
 
   @Override
-  public void showBorrowSuccessMessage(boolean success) {
+  public void showBorrowResultMessage(boolean success) {
     System.out.println(
         success ? "Book borrowed successfully." : "Cannot borrow the book.");
   }
@@ -61,4 +61,39 @@ public class GUI implements IGUI {
     return new User(login, this.scanner.nextLine());
   }
 
+  @Override
+  public Book readBook() {
+    System.out.println("ISBN: ");
+    String isbn = this.scanner.nextLine();
+
+    System.out.println("Title: ");
+    String title = this.scanner.nextLine();
+
+    System.out.println("Author: ");
+    String author = this.scanner.nextLine();
+
+    System.out.println("Available: ");
+    System.out.println("1. Yes");
+    System.out.println("2. No");
+    Boolean available = this.scanner.nextInt() == 1;
+
+    return new Book(title, author, isbn, available);
+  }
+
+  @Override
+  public void showResultAddBookMessage(boolean success) {
+    System.out.println(
+        success ? "Book added successfully." : "Cannot add the book.");
+  }
+
+  @Override
+  public void showResultRemoveBookMessage(boolean success) {
+    System.out.println(
+        success ? "Book removed successfully." : "Cannot remove the book.");
+  }
+
+  @Override
+  public void showExitMessage() {
+    System.out.println("Goodbye!");
+  }
 }
